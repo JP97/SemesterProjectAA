@@ -10,7 +10,8 @@ namespace SemesterProjectAA.Services
     {
         public string FetchRemoteGPSCoordinates()
         {
-            return "some fake coordinates";
+            //return "some fake coordinates";
+            throw new NotImplementedException();
         }
     }
 }

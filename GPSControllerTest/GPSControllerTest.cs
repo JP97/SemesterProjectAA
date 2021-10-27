@@ -21,14 +21,14 @@ namespace GPSControllerTest
         public void FetchGPSCoordinates_IsSuccessfull_True()
         {
             //arrange
+            _gpsService.Setup(x => x.FetchRemoteGPSCoordinates()).Returns("some fake coordinates");
             GPSController gpsController = new GPSController(_gpsService.Object);
+
             //act
             string result = gpsController.FetchGPSCoordinates();
+
             //assert
             _gpsService.Verify(x => x.FetchRemoteGPSCoordinates(), "some fake coordinates");
-            
-            //Assert.Equal("some fake coordinates", result);
-
         }
     }
 }
