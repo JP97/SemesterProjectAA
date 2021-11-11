@@ -25,7 +25,17 @@ jobs:
     
     steps:
       - uses: actions/checkout@v2
-      - name: Run Snyk to check for vulnerabilities
-        uses: snyk/actions/dotnet@development
+      - name: Build .Net
+        uses: setup-dotnet@v2
+      - name: build the project
+        run: |
+          dotnet build
+          dotnet --version
+      - name: Test dependencies with Snyk
+        run: snyk test
         env:
-          SNYK_TOKEN: 5023c08e-f940-4f39-bb1c-3df81e278e67
+          SNYK_TOKEN: ${{secrets.SNYK_TOKEN}}
+      - name: Monitor dependencies for security issues with Snyk
+        run: snyk monitor
+        env:
+          SNYK_TOKEN: ${{secrets.SNYK_TOKEN}}
