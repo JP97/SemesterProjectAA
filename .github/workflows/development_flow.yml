@@ -24,8 +24,8 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-      - uses: actions/checkout@main
+      - uses: actions/checkout@v2
       - name: Run Snyk to check for vulnerabilities
-        uses: snyk/actions/dotnet@master
+        uses: snyk/actions/dotnet@v2
         env:
           SNYK_TOKEN: 5023c08e-f940-4f39-bb1c-3df81e278e67
