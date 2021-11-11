@@ -31,6 +31,7 @@ jobs:
         run: |
           dotnet build
           dotnet --version
+      - uses: snyk/actions/setup@master
       - name: Test dependencies with Snyk
         run: snyk test
         env:
