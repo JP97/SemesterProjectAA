@@ -25,6 +25,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Run Snyk to check for vulnerabilities
-        uses: snyk/actions/node@master
+        uses: snyk/actions/dotnet@master
         env:
           SNYK_TOKEN: 5023c08e-f940-4f39-bb1c-3df81e278e67
