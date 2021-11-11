@@ -26,5 +26,6 @@ jobs:
       - uses: actions/checkout@v2
       - name: Run Snyk to check for vulnerabilities
         uses: snyk/actions/dotnet@master
+      - working-directory: ./SemesterProjectAA
         env:
           SNYK_TOKEN: 5023c08e-f940-4f39-bb1c-3df81e278e67
