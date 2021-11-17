@@ -9,7 +9,7 @@ jobs:
     runs-on: ${{matrix.os}}
     strategy:
       matrix:
-        os: [ubuntu-latest]
+        os: [ubuntu-latest, macOS-latest]
     
     steps:
       - uses: actions/checkout@v2
@@ -56,20 +56,20 @@ jobs:
         run: snyk test --all-projects --detection-level=2
         
         
-  security-on-Mac:
-    runs-on: [macOS-latest]
-    
-    steps:
-      - uses: actions/checkout@v2
-      - name: Build .Net
-        uses: actions/setup-dotnet@v1
-      - name: Build the project and setup Snyk
-        run: |
-          dotnet build --configuration Release
-          dotnet --version
-          brew tap snyk/tap
-          brew install snyk
-          snyk auth 5023c08e-f940-4f39-bb1c-3df81e278e67
-      - name: Run Snyk
-        run: snyk test --all-projects --detection-level=2
+ # security-on-Mac:
+ #   runs-on: [macOS-latest]
+ #   
+ #   steps:
+ #     - uses: actions/checkout@v2
+ #     - name: Build .Net
+ #       uses: actions/setup-dotnet@v1
+ #     - name: Build the project and setup Snyk
+ #       run: |
+ #         dotnet build --configuration Release
+ #         dotnet --version
+ #         brew tap snyk/tap
+ #         brew install snyk
+ #         snyk auth 5023c08e-f940-4f39-bb1c-3df81e278e67
+ #     - name: Run Snyk
+ #       run: snyk test --all-projects --detection-level=2
 
