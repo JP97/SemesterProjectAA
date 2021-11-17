@@ -50,15 +50,3 @@ jobs:
           snyk auth 5023c08e-f940-4f39-bb1c-3df81e278e67
       - name: Run Snyk
         run: snyk test --all-projects --detection-level=2
-        
-          
-      
-     # - uses: snyk/actions/setup@master
-     # - name: Test dependencies with Snyk
-     #   run: snyk test --all-projects --detection-level=2
-     #   env:
-     #     SNYK_TOKEN: 5023c08e-f940-4f39-bb1c-3df81e278e67
-     # - name: Monitor dependencies for security issues with Snyk
-      #  run: snyk test --all-projects --detection-level=2
-      #  env:
-       #   SNYK_TOKEN: 5023c08e-f940-4f39-bb1c-3df81e278e67
