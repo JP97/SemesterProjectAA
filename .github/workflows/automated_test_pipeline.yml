@@ -1,6 +1,6 @@
 name: "Development flow for testing and merging"
 
-on: [ push ]
+on: [ push, pull_request ]
 
 jobs:
   build:
