@@ -19,6 +19,9 @@ jobs:
         run: |
           dotnet build --configuration Release
           dotnet --version
+      - run: npm install snyk@latest -g
+        if: ${{matrix.os}} == 'windows-latest'
+          
       - uses: snyk/actions/setup@master
      # - name: Test dependencies with Snyk
      #   run: snyk test --all-projects --detection-level=2
