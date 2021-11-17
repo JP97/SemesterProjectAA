@@ -44,15 +44,22 @@ jobs:
         run: |
           dotnet build --configuration Release
           dotnet --version
-          npm install snyk@latest -g
+          npm install -g npm@latest
+          npm install -g snyk
+          npm install snyk-to-html -g
+          snyk --help
+          snyk auth $SNYK_TOKEN
+          snyk monitor --project-name=goof-gitlab
+          snyk test --json | snyk-to-html -o snyk_results.html
         
           
-      - uses: snyk/actions/setup@master
+      
+     # - uses: snyk/actions/setup@master
      # - name: Test dependencies with Snyk
      #   run: snyk test --all-projects --detection-level=2
      #   env:
      #     SNYK_TOKEN: 5023c08e-f940-4f39-bb1c-3df81e278e67
-      - name: Monitor dependencies for security issues with Snyk
-        run: snyk test --all-projects --detection-level=2
-        env:
-          SNYK_TOKEN: 5023c08e-f940-4f39-bb1c-3df81e278e67
+     # - name: Monitor dependencies for security issues with Snyk
+      #  run: snyk test --all-projects --detection-level=2
+      #  env:
+       #   SNYK_TOKEN: 5023c08e-f940-4f39-bb1c-3df81e278e67
