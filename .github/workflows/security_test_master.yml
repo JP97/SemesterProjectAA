@@ -9,7 +9,7 @@ jobs:
     runs-on: ${{matrix.os}}
     strategy:
       matrix:
-        os: [ubuntu-latest, windows-latest, macOS-latest]
+        os: [ubuntu-latest, macOS-latest]
     
     steps:
       - uses: actions/checkout@v2
@@ -19,8 +19,32 @@ jobs:
         run: |
           dotnet build --configuration Release
           dotnet --version
-        if: matrix.os == 'Windows'
-      - run: npm install snyk@latest -g
+     #   if: matrix.os == 'Windows'
+     # - run: npm install snyk@latest -g
+        
+          
+      - uses: snyk/actions/setup@master
+     # - name: Test dependencies with Snyk
+     #   run: snyk test --all-projects --detection-level=2
+     #   env:
+     #     SNYK_TOKEN: 5023c08e-f940-4f39-bb1c-3df81e278e67
+      - name: Monitor dependencies for security issues with Snyk
+        run: snyk test --all-projects --detection-level=2
+        env:
+          SNYK_TOKEN: 5023c08e-f940-4f39-bb1c-3df81e278e67
+          
+  security-on-windows:
+    runs-on: [windows-latest]
+    
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build .Net
+        uses: actions/setup-dotnet@v1
+      - name: build the project
+        run: |
+          dotnet build --configuration Release
+          dotnet --version
+          npm install snyk@latest -g
         
           
       - uses: snyk/actions/setup@master
