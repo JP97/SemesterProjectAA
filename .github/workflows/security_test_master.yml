@@ -1,0 +1,30 @@
+name: .NET
+
+on:
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  security:
+    runs-on: ${{matrix.os}}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macOS-latest]
+    
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build .Net
+        uses: actions/setup-dotnet@v1
+      - name: build the project
+        run: |
+          dotnet build --configuration Release
+          dotnet --version
+      - uses: snyk/actions/setup@master
+     # - name: Test dependencies with Snyk
+     #   run: snyk test --all-projects --detection-level=2
+     #   env:
+     #     SNYK_TOKEN: 5023c08e-f940-4f39-bb1c-3df81e278e67
+      - name: Monitor dependencies for security issues with Snyk
+        run: snyk test --all-projects --detection-level=2
+        env:
+          SNYK_TOKEN: 5023c08e-f940-4f39-bb1c-3df81e278e67
