@@ -63,7 +63,7 @@ jobs:
         run: |
           dotnet build --configuration Release
           dotnet --version
-          brew tap snyk/tab
+          brew tap snyk/tap
           brew install snyk
           snyk auth 5023c08e-f940-4f39-bb1c-3df81e278e67
       - name: Run Snyk
